@@ -1,0 +1,10 @@
+1. Arithmetic questions should appear in blocks starting from the top of the screen, and slowly fall towards the bottom of the screen.
+2. Over time, the questions should fall down faster, and the questions increase in difficulty (e.g. single digit arithmetic to double digit arithmetic).
+3. The player must destroy the blocks before they reach the bottom of the screen by typing in the answers into an input box, via keyboard.
+4. Players will have 3 lives. Once a question touches the bottom of the screen or is answered incorrectly, players will lose a life, and will lose the game once they reach 0 lives.
+5. Upon losing the game, the end game screen will display the number of questions the player got correct as their final score.
+6. In each 1 minute span of gameplay, a block with an extra life attached will be generated at a random time.
+7. Score multiplier for streaks of correct blocks answered.
+8. Background color changes for every life lost (from white to pink to red), and color changes back (from red to pink to white) for every life gained back.
+9. Ability to restart the game after losing, by clicking a button on the end screen.
+10. A sound plays every time a block is destroyed and a different sound is played when a life is lost.
