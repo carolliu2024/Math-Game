@@ -8,19 +8,34 @@ include(.cs211/cmake/CMakeLists.txt)
 
 # TODO: PUT ADDITIONAL MODEL .cxx FILES IN THIS LIST:
 set(MODEL_SRC
-        src/model.cxx)
+        src/model.cxx
+        src/game_config.cxx
+        src/block.cxx
+        src/player.cxx)
 
 # TODO: PUT ADDITIONAL NON-MODEL (UI) .cxx FILES IN THIS LIST:
-add_program(${GAME_EXE}
-        ${MODEL_SRC}
+add_program(math
+        src/main.cxx
         src/view.cxx
         src/controller.cxx
-        src/main.cxx)
-target_link_libraries(${GAME_EXE} ge211)
+        ${MODEL_SRC})
+
+target_link_libraries(math ge211)
 
 add_test_program(model_test
-        ${MODEL_SRC}
-        test/model_test.cxx)
+        test/model_test.cxx
+        ${MODEL_SRC})
+
+add_test_program(block_test
+        test/block_test.cxx
+        ${MODEL_SRC})
+
+add_test_program(player_test
+        test/player_test.cxx
+        ${MODEL_SRC})
+
+
 target_link_libraries(model_test ge211)
+
 
 # vim: ft=cmake
