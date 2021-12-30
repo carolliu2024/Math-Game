@@ -2,9 +2,8 @@
 // Created by Dannes Zhang on 11/22/21.
 //
 #pragma once
+
 #include <ge211.hxx>
-#ifndef GAME_GAME_CONFIG_HXX
-#define GAME_GAME_CONFIG_HXX
 
 
 struct Game_config
@@ -14,35 +13,26 @@ struct Game_config
 
     // The dimensions of the whole window:
     ge211::Dims<int> scene_dims;
+    int screen_bottom;
 
-    // The ball's initial velocity {width, height}:
-    ge211::Dims<int> velocity_0;
+    ge211::Dims<int> block_dims;
 
-    // Boost to velocity on L2 (acceleration)
-    ge211::Dims<int> boost;
-        //only affects y
+    ge211::Dims<int> restart_dims;
 
-    // Number of pixels from sides of screen:
+    ge211::Dims<int> block_velocity_0;
+
+    // Number of pixels from top of screen to top of brick formation:
+    int top_margin;
+
+    // Number of pixels from sides of screen to sides of brick formation:
     int side_margin;
 
-    // Number of pixels from bottom of screen to leave room for text box:
+    // Number of pixels from *top* of screen to *bottom* of brick formation.
+    // unused parameter?
+    int brick_depth;
+
+    // Number of pixels from bottom of screen to bottom of paddle.
+    // unused parameter?
     int bottom_margin;
 
-    // Life_generation_rate (1/min)
-    int life_generation_rate;
-
-
-    // The dimensions of each block
-    ge211::Dims<int> l1_block_dims;
-    ge211::Dims<int> l2_block_dims;
-
-
-    int num_lives;
-    int num_l1;     // Number of L1 questions before L2 begins
-
-
-
-
 };
-
-#endif //GAME_GAME_CONFIG_HXX
