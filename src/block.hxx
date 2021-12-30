@@ -5,10 +5,12 @@
 #pragma once
 
 #include "game_config.hxx"
-
+#include "model.hxx"
 #include <ge211.hxx>
-
 #include <iostream>
+#include <string>
+#include "player.hxx"
+
 #ifndef GAME_BLOCK_HXX
 #define GAME_BLOCK_HXX
 
@@ -37,34 +39,57 @@ using rect = ge211::Rect<int>;
 
 class Block
 {
+private:
         ///Data members
         Position coord;       // top left corner of block
         int width;
         int height;
-        char question;      //math question
+        std::string question[3];      //math question - can write function for this
+            //must convert to int in order to calculate
+        int answer;         //can write function for this
         bool life;          //whether the block has an extra life attached
         Velocity velocity;      // The velocity of the block in pixels per tick.
-        enum class Block_Level  //determines whether the question is single or
-                                // double digits
-        {
-            l1,
-            l2
-        };
+        int block_level;
 
+        ge211::Random_source<int> random_x_coor_;     //for assigning coord
+
+        ge211::Random_source<int> random_life_;     //for assigning random life
+        ge211::Random_source<int> random_num_l1_;
+        ge211::Random_source<int> random_num_l2_;
+        ge211::Random_source<int> random_operator_;
+        Game_config const config;
+
+        // Model& model_;
+        Player player_;
+
+public:
         ///Constructors
         Block();
-        Block(Position coord);
+        explicit Block(Game_config);
+        // Block(Position coord);
 
-        ///Member functions
-        //Assigns the coordinates for a block
-        //y coordinate is always 0; x coordinate is randomized
+        //Changes a block to a L2 block
+        //Updates height, width, and block_level
+        void advance_level(Block block);
+
+        //Self-explanatory:
+        void create_question(Block block);
+        void create_operator(Block block);
+        void calculate_answer(Block block);
+
+        //Returns a random x coord and a 0 y coord
         Position assign_coord();
-        bool destroy_block(Block block) const;
 
-private:
-        ge211::Random_source<int> random_x_coor_;     //for assigning coord
-        ge211::Random_source<int> random_life;     //for assigning random life
-    };
+        //For retrieving block data members in other files:
+        Position get_coord(Block block);
+        int get_width(Block block);
+        int get_height(Block block);
+        std::string get_question(Block block);
+        int get_answer(Block block);
+        int get_block_level(Block block);
+
+};
+
 
 //Compares two Blocks for equality. This may be useful for testing.
 bool
