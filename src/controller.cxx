@@ -16,11 +16,11 @@ Controller::Controller(Model& model)
 void
 Controller::on_key_up(ge211::Key key)
 {
+    // Spacebar is the "enter" key. Checks the player's inputted answer upon pressing.
     if (key == ge211::Key::code(' ')) {
-        //std::cout << "enter key pressed \n";
-        //call check_answer()
         model.check_answer();
     }
+    // Future improvement: use a loop to input the possible keys, instead of manually typing all
     if (key == ge211::Key::code('1') ||
         key == ge211::Key::code('2') ||
         key == ge211::Key::code('3') ||
@@ -32,13 +32,9 @@ Controller::on_key_up(ge211::Key key)
         key == ge211::Key::code('9') ||
         key == ge211::Key::code('0') ||
         key == ge211::Key::code('-')) {
-        //std::cout << "player_input if \n";
-//    std::cout << "hi";
         char c = key.code();
         //retains the key for view to use
         model.on_key(c);
-//        player_input = player_input + c;
-//        std::cout << "player_input controller: " << player_input <<"\n";
     }
 
     if (key == ge211::Key::code('q')) {
