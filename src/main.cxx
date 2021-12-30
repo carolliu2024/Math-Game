@@ -3,7 +3,8 @@
 int
 main()
 {
-    Controller().run();
+    Model model;
+    Controller controller(model);
 
-    return 0;
+    controller.run();
 }
